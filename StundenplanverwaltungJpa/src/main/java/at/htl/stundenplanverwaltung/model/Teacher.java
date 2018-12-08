@@ -7,9 +7,6 @@ import javax.xml.bind.annotation.XmlTransient;
 @Entity(name = "teacher")
 public class Teacher extends Person{
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    private Long id;
     private String teacherRoom;
 
     @JsonbTransient

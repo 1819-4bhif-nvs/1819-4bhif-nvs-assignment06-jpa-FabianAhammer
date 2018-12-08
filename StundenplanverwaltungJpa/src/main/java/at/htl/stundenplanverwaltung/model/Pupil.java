@@ -8,10 +8,6 @@ import javax.persistence.*;
 })
 public class Pupil extends Person{
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    private Long id;
-
     private String matrNr;
     private boolean classSpeaker;
 
