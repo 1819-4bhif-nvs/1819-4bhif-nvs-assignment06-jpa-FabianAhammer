@@ -12,7 +12,7 @@ public class Teacher extends Person{
     @JsonbTransient
     @XmlTransient
     @ManyToOne
-    private Group headOfGroup;
+    private SchoolClass classBoard;
 
     public Teacher() {
     }
@@ -21,9 +21,9 @@ public class Teacher extends Person{
         super(surname, lastname);
     }
 
-    public Teacher(String surname, String lastname, String teacherRoom, Group headOfGroup) {
+    public Teacher(String surname, String lastname, String teacherRoom, SchoolClass headOfGroup) {
         super(surname, lastname);
-        this.headOfGroup = headOfGroup;
+        this.classBoard = headOfGroup;
     }
 
     public String getTeacherRoom() {
@@ -34,11 +34,11 @@ public class Teacher extends Person{
         this.teacherRoom = teacherRoom;
     }
 
-    public Group getHeadOfGroup() {
-        return headOfGroup;
+    public SchoolClass getClassBoard() {
+        return classBoard;
     }
 
-    public void setHeadOfGroup(Group headOfGroup) {
-        this.headOfGroup = headOfGroup;
+    public void setClassBoard(SchoolClass headOfGroup) {
+        this.classBoard = headOfGroup;
     }
 }

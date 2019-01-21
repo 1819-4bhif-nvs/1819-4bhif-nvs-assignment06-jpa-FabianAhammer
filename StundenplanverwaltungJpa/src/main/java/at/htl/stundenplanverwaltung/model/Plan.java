@@ -4,13 +4,11 @@ import javax.json.bind.annotation.JsonbTransient;
 import javax.persistence.*;
 import javax.xml.bind.annotation.XmlTransient;
 import java.time.LocalDate;
-import java.util.Date;
 
 
 @Entity(name = "plan")
 @NamedQueries({
         @NamedQuery(name = "plan.findAll",query = "select p from plan p"),
-        @NamedQuery(name = "plan.findByWeek",query = "select p from plan p where p.weekOfYear like ?1"),
         @NamedQuery(name = "plan.findById",query = "select p from plan p where p.id = ?1")
 })
 public class Plan {
@@ -19,34 +17,29 @@ public class Plan {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
-    private int hoursSchool;
     private LocalDate made;
-    private String weekOfYear;
     @XmlTransient
     @JsonbTransient
     @OneToOne
     private Teacher maker;
-
+    @XmlTransient
+    @JsonbTransient
+    @OneToOne
+    private Subject subject;
+    @XmlTransient
+    @JsonbTransient
+    @OneToOne
+    private Vintage vintage;
 
 
     public Plan() {
     }
 
-    public Plan(String weekOfYear, Teacher maker,int hoursSchool,LocalDate made) {
-        this.weekOfYear = weekOfYear;
+    public Plan(LocalDate made, Teacher maker, Subject subject, Vintage vintage) {
+        this.made = made;
         this.maker = maker;
-        this.hoursSchool = hoursSchool;
-        this.made = made;
-    }
-
-    //region Getter n Setter
-
-    public LocalDate getMade() {
-        return made;
-    }
-
-    public void setMade(LocalDate made) {
-        this.made = made;
+        this.subject = subject;
+        this.vintage = vintage;
     }
 
     public Long getId() {
@@ -57,12 +50,12 @@ public class Plan {
         this.id = id;
     }
 
-    public String getWeekOfYear() {
-        return weekOfYear;
+    public LocalDate getMade() {
+        return made;
     }
 
-    public void setWeekOfYear(String weekOfYear) {
-        this.weekOfYear = weekOfYear;
+    public void setMade(LocalDate made) {
+        this.made = made;
     }
 
     public Teacher getMaker() {
@@ -73,12 +66,19 @@ public class Plan {
         this.maker = maker;
     }
 
-    public int getHoursSchool() {
-        return hoursSchool;
+    public Subject getSubject() {
+        return subject;
     }
 
-    public void setHoursSchool(int hoursSchool) {
-        this.hoursSchool = hoursSchool;
+    public void setSubject(Subject subject) {
+        this.subject = subject;
     }
-    //endregion
+
+    public Vintage getVintage() {
+        return vintage;
+    }
+
+    public void setVintage(Vintage vintage) {
+        this.vintage = vintage;
+    }
 }

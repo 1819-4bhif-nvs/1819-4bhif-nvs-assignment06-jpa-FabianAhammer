@@ -5,6 +5,7 @@ import at.htl.stundenplanverwaltung.model.*;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.print.attribute.standard.Media;
 import javax.transaction.Transactional;
 import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
@@ -41,9 +42,21 @@ public class PupilEndpoint {
     {
         Pupil p = em.find(Pupil.class,id);
         p.setMatrNr(pupil.getMatrNr());
-        p.setClassSpeaker(pupil.isClassSpeaker());
+        p.setClassPresident(pupil.isClassPresident());
         em.merge(p);
     }
+    @Path("teacher/put{id}")
+    @PUT
+    @Transactional
+    @Consumes(MediaType.APPLICATION_JSON)
+    public void put(@PathParam("id") long id, Teacher teacher)
+    {
+        Teacher t = em.find(Teacher.class,id);
+        t.setTeacherRoom(teacher.getTeacherRoom());
+        t.setClassBoard(teacher.getClassBoard());
+        em.merge(t);
+    }
+
 
     @Path("pupil/remove/{id}")
     @DELETE

@@ -5,12 +5,12 @@ import javax.persistence.*;
 import javax.xml.bind.annotation.XmlTransient;
 import java.util.*;
 
-@Entity(name = "groupg")
+@Entity(name = "schoolclass")
 @NamedQueries({
-        @NamedQuery(name = "group.findAll",query = "select g from groupg g"),
-        @NamedQuery(name = "group.findByName",query = "select g from groupg g where g.className like ?1")
+        @NamedQuery(name = "group.findAll",query = "select g from schoolclass g"),
+        @NamedQuery(name = "group.findByName",query = "select g from schoolclass g where g.className like ?1")
 })
-public class Group {
+public class SchoolClass {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
@@ -21,10 +21,10 @@ public class Group {
     @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Pupil> pupils = new ArrayList<>();
 
-    public Group() {
+    public SchoolClass() {
     }
 
-    public Group(String className, List<Pupil> pupils) {
+    public SchoolClass(String className, List<Pupil> pupils) {
         this.className = className;
         this.pupils = pupils;
     }

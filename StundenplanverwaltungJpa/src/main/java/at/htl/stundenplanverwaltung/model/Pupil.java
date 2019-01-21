@@ -9,7 +9,7 @@ import javax.persistence.*;
 public class Pupil extends Person{
 
     private String matrNr;
-    private boolean classSpeaker;
+    private boolean classPresident;
 
     public Pupil() {
     }
@@ -21,7 +21,7 @@ public class Pupil extends Person{
     public Pupil(String surname, String lastname,String martNr,boolean classSpeaker) {
         super(surname, lastname);
         this.matrNr = martNr;
-        this.classSpeaker = classSpeaker;
+        this.classPresident = classSpeaker;
     }
 
 
@@ -33,11 +33,11 @@ public class Pupil extends Person{
         this.matrNr = matrNr;
     }
 
-    public boolean isClassSpeaker() {
-        return classSpeaker;
+    public boolean isClassPresident() {
+        return classPresident;
     }
 
-    public void setClassSpeaker(boolean classSpeaker) {
-        this.classSpeaker = classSpeaker;
+    public void setClassPresident(boolean classPresident) {
+        this.classPresident = classPresident;
     }
 }
